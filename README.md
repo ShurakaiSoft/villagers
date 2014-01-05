@@ -21,7 +21,7 @@ need a replacement mage, it will only show mage candidates.
 
 # Development
 
-This is a Javascript based application. 
+This will be a client-side JavaScript based SPA. 
 
 
 # Interface 
@@ -29,3 +29,21 @@ This is a Javascript based application.
 There are two parts to the application. The first part generates a population. And the second provides some filtering
 options, for creating a short list of candidates.
 
+# Development Roadmap
+
+## Milestone 1 (Minimum Viable Product)
+
+* Adventurers consist of a set of 6 attributes (str, dex, con, int, wis and chr)
+* populate a village of a given size.
+* Search village based on the 6 attributes, average and total.
+* User configurable top x candidates shown.
+
+## Future Milestones
+
+These items haven't been scheduled for development. Just a list of ideas and 
+extensions for future development.
+
+* Add more detail to Adventurers. eg (Class, Race, Age, Gender, Level etc)
+* Filter candidates on new adventurer details.
+* Allow weighting of filter attributes, eg str is 3x more important than dex.
+* Options to customize village, eg Dwarven village.
