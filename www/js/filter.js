@@ -4,57 +4,33 @@
 var MAIN = (function (main) {
 	"use strict";
 
-	// mocked filterOptions
-	var mockedFilterOptions = {
-			statsAtLeast: {
-				dex: 16,
-				int: 17,
-				str: 9,
-				wis: 9,
-				con: 13,
-				chr: 12
-			},
-			statsNotMoreThan: {
-				str: 16
-			}
-	};
-
 
 	/**
 	 * returns false if specified minimums are not met.
 	 * Unspecified values are not failures.
 	 */
-	function filterStats(candidate, statsAtLeast) {
-		var statCodes = ["str", "dex", "con", "int", "wis", "chr"];
-		var statFunc = { str: "getStr", dex: "getDex", con: "getCon",
-				int: "getInt", wis: "getWis", chr: "getChr"};
-		var i = 0;
-		var code = statCodes[0];
+	function filterStats(candidate, filter) {
+		var statsGetterFunc = {
+			str: "getStr",
+			dex: "getDex",
+			con: "getCon",
+			int: "getInt",
+			wis: "getWis",
+			chr: "getChr",
+			total: "getTotal",
+			avg: "getAvg"
+		};
 
-		for (i = 0; i < statCodes.length; i++) {
-			code = statCodes[i];
-			if (statsAtLeast[code]) {
-				if (candidate[statFunc[code]]() < statsAtLeast[code]) {
-					return false;
-				}
+		filter.statsAtLeast = filter.statsAtLeast || {};
+		for (var stat in filter.statsAtLeast) {
+			if (candidate[statsGetterFunc[stat]]() < filter.statsAtLeast[stat]) {
+				return false;
 			}
 		}
-		return true;
-	}
-
-	function statsNotMoreThanFilter(candidate, filter) {
-		var statCodes = ["str", "dex", "con", "int", "wis", "chr"];
-		var statFunc = { str: "getStr", dex: "getDex", con: "getCon",
-				int: "getInt", wis: "getWis", chr: "getChr"};
-		var i = 0;
-		var code = statCodes[0];
-
-		for (i = 0; i < statCodes.length; i++) {
-			code = statCodes[i];
-			if (filter[code]) {
-				if (candidate[statFunc[code]]() > filter[code]) {
-					return false;
-				}
+		filter.statsNotMoreThan = filter.statsNotMoreThan || {};
+		for (var stat in filter.statsNotMoreThan) {
+			if (candidate[statsGetterFunc[stat]]() > filter.statsNotMoreThan[stat]) {
+				return false;
 			}
 		}
 		return true;
@@ -76,13 +52,8 @@ var MAIN = (function (main) {
 		filterOptions = filterOptions || {};
 		for (i = 0; i < adventurers.length; i++) {
 			candidate = adventurers[i];
-			if (filterOptions.statsAtLeast) {
-				if (filterStats(candidate, filterOptions.statsAtLeast) === false) {
-					continue;
-				}
-			}
-			if (filterOptions.statsNotMoreThan) {
-				if (statsNotMoreThanFilter(candidate, filterOptions.statsNotMoreThan) === false) {
+			if (filterOptions.statsAtLeast || filterOptions.statsNotMoreThan) {
+				if (filterStats(candidate, filterOptions) === false) {
 					continue;
 				}
 			}
@@ -90,7 +61,6 @@ var MAIN = (function (main) {
 		}
 		return filteredList;
 	};
-
 
 	return main;
 } (MAIN || {}));

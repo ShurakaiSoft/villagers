@@ -149,23 +149,43 @@ test("toString can print a string.", function () {
 	test("Can remove Adventurers who's stats exceed requirements", function () {
 		var shortList = MAIN.filterAdventurers(twoAdventurers, {
 			statsNotMoreThan: {
-				str: 9
+				wis: 9
 			}
 		});
 		ok(shortList.length === 1);
-		ok(shortList[0].getStr() <= 9);
+		ok(shortList[0].getWis() <= 9);
 	});
 
-//	test("Can remove Adventurers who's total stats fall below requirements", function () {
-//		var shortList = MAIN.filterAdventurers(twoAdventurers, {
-//			statsNotMoreThan: {
-//				total: 50
-//			}
-//		});
-//		ok(shortList.length === 1);
-//		ok(shortList[0].getTotal() <= 36);
-//
-//	});
+	test("Very strict requirements removes all candidates.", function () {
+		var shortList = MAIN.filterAdventurers(twoAdventurers, {
+			statsAtLeast: {
+				int: 100
+			}
+		});
+		ok(shortList.length === 0);
+	});
+
+	test("Can remove Adventurers who's total stats fall below requirements", function () {
+		var shortList = MAIN.filterAdventurers(twoAdventurers, {
+			statsAtLeast: {
+				total: 50
+			}
+		});
+		ok(shortList.length === 1);
+		ok(shortList[0].getTotal() >= 50);
+	});
+
+	test("Can remove Adventurers who's average stats are too high.", function () {
+		var shortList = MAIN.filterAdventurers(twoAdventurers, {
+			statsNotMoreThan: {
+				avg: 9
+			}
+		});
+		ok(shortList.length === 1, "ShortList.length is 1");
+		ok(shortList[0].getAvg() <= 9, "First Adventurer's average stats are less than or equal to 50");
+	});
+
+
 }());
 
 

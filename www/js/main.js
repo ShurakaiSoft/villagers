@@ -49,7 +49,7 @@ var MAIN = (function (main) {
 			html += shortList[i].toString() + "<br>";
 		}
 		$("#candidates").html(html);
-	}
+	};
 
 	return main;
 } (MAIN || {}));
