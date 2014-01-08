@@ -9,15 +9,23 @@
 <h1>Villagers Wanted for Adventure Fame and Glory!</h1>
 </header>
 <section id="population">
-population size:
-<input type="text" value="0" /><br>
-<button id="go" type="submit">Generate</button>
+Candidate Pool Size:
+<input id="populationSize" type="text" value="10000" /><br>
+Short List Size:
+<input id="shortList" type="text" value="6" /><br>
+<button id="go" type="submit">Create</button>
 </section>
-<section id="candidates">
+<section>
+<div id="candidates">
+Press button to begin.
+</div>
 </section>
 <footer>
 </footer>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="/js/generator.js"></script>
+<script src="/js/filter.js"></script>
+<script src="/js/character.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/events.js"></script>
 </body>
 </html>
