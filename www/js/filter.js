@@ -10,26 +10,45 @@ var MAIN = (function (main) {
 	 * Unspecified values are not failures.
 	 */
 	function filterStats(candidate, filter) {
-		var statsGetterFunc = {
-			str: "getStr",
-			dex: "getDex",
-			con: "getCon",
-			int: "getInt",
-			wis: "getWis",
-			chr: "getChr",
-			total: "getTotal",
-			avg: "getAvg"
-		};
+
+
+		function failStat(stat, operator, filterValue) {
+			var getterFuncLoopupTable = {
+					str: "getStr",
+					dex: "getDex",
+					con: "getCon",
+					int: "getInt",
+					wis: "getWis",
+					chr: "getChr",
+					total: "getTotal",
+					avg: "getAvg"
+				};
+
+			if (candidate[getterFuncLoopupTable[stat]]) {
+				switch (operator) {
+				case 'lessThan':
+					return (candidate[getterFuncLoopupTable[stat]]() < filterValue);
+					break;
+				case 'greaterThan':
+					return (candidate[getterFuncLoopupTable[stat]]() > filterValue);
+					break;
+				default:
+					throw "failStat, FATAL ERROR: Invalid Operator!";
+				}
+			}
+			return false; // ignore invalid filter options.
+		}
+
 
 		filter.statsAtLeast = filter.statsAtLeast || {};
 		for (var stat in filter.statsAtLeast) {
-			if (candidate[statsGetterFunc[stat]]() < filter.statsAtLeast[stat]) {
+			if (failStat(stat, 'lessThan', filter.statsAtLeast[stat])) {
 				return false;
 			}
 		}
 		filter.statsNotMoreThan = filter.statsNotMoreThan || {};
 		for (var stat in filter.statsNotMoreThan) {
-			if (candidate[statsGetterFunc[stat]]() > filter.statsNotMoreThan[stat]) {
+			if (failStat(stat, 'greaterThan', filter.statsNotMoreThan[stat])) {
 				return false;
 			}
 		}

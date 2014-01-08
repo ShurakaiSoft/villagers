@@ -119,13 +119,12 @@ test("toString can print a string.", function () {
 
 	test("Filtering doesn't change original array of Adventurers", function () {
 		var originalLength = twoAdventurers.length;
-		var shortList = MAIN.filterAdventurers(twoAdventurers, {
+		MAIN.filterAdventurers(twoAdventurers, {
 			statsAtLeast: {
 				str: 18
 			}
 		});
-		ok(shortList.length === 0);
-		ok(twoAdventurers.length === originalLength);
+		ok(twoAdventurers.length === originalLength, "Original Array length didn't change.");
 	});
 
 	test("No filterOptions argument returns a copy of the original list of Adventurers.", function () {
@@ -185,6 +184,15 @@ test("toString can print a string.", function () {
 		ok(shortList[0].getAvg() <= 9, "First Adventurer's average stats are less than or equal to 50");
 	});
 
+	test("Invalid filter options are ignored.", function () {
+		var shortList = MAIN.filterAdventurers(twoAdventurers, {
+			statsNotMoreThan: {
+				invalidStatCode: 9
+			}
+		});
+		ok(shortList.length === 2, "Results after filtering has the same length.");
+		deepEqual(shortList, twoAdventurers, "Original and Filtered lists are the same (deepEqual)");
+	});
 
 }());
 
