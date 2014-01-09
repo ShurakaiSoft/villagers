@@ -22,11 +22,22 @@ var MAIN = (function (main) {
 	}
 
 	/**
+	 * A wrapper for createCharacter.
+	 *
+	 * NOTE: The Future API will call characters as Adventurers.
+	 */
+	main.createAdventurer = function (options) {
+		return main.createCharacter(options);
+	};
+
+
+	/**
 	 * Create a character.
 	 *
 	 * Options are the stats to use. Any options missing will be randomly
 	 * generated.
 	 *
+	 * @return object, representing the created character.
 	 */
 	main.createCharacter = function (options) {
 		var character = {};

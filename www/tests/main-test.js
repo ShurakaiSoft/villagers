@@ -30,7 +30,7 @@ var characterAllSix = MAIN.createCharacter({
  *
  * @param value to test
  * @param lower lowerbound, inclusive
- * @param upper uppserbound, inclusive
+ * @param upper upperbound, inclusive
  * @returns {Boolean} true if value >= lower and value <= upper.
  */
 function between(value, lower, upper) {
