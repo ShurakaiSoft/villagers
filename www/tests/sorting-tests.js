@@ -122,7 +122,7 @@ test("Sort a collection of Adventurers on their total stat in ascending order.",
 
 test("Sort a collection of Adventures on str (descending) then total (descending)", function () {
 	mockAdventurersList.push(adventurerComplex);
-	successfullySorted = MAIN.sortAdventurers(mockAdventurersList, [{
+	MAIN.sortAdventurers(mockAdventurersList, [{
 		metric: 'getStr',
 		order: 'descending'
 	}, {
@@ -136,7 +136,7 @@ test("Sort a collection of Adventures on str (descending) then total (descending
 
 test("Sort a collection twice. Once in each direction. (chr asc, and total desc)", function () {
 	mockAdventurersList.push(adventurerComplex);
-	successfullySorted = MAIN.sortAdventurers(mockAdventurersList, [{
+	MAIN.sortAdventurers(mockAdventurersList, [{
 		metric: 'getChr',
 		order: 'ascending'
 	}, {
