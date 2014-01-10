@@ -103,7 +103,7 @@ var MAIN = (function (main) {
 	/**
 	 * returns an array of adventurers of populationSize
 	 */
-	main.generateCandidates = function (populationSize) {
+	main.generateAdventurers = function (populationSize) {
 		var population = [];
 		var i;
 

@@ -45,14 +45,12 @@ test("application exists", function () {
 
 test("generateCandidates() returns requested size", function () {
 	var requestedSize = 5;
-	MAIN.candidates = MAIN.generateCandidates(requestedSize);
-	ok(MAIN.candidates.length === requestedSize);
+	var candidates = MAIN.generateAdventurers(requestedSize);
+	ok(candidates.length === requestedSize);
 });
 
 
 module("character.js", {
-	setup: function () {
-	}
 });
 test("Static character Creation", function () {
 	ok(characterAllTen.getStr() === 10);

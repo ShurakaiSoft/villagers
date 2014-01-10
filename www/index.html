@@ -8,24 +8,34 @@
 <header>
 <h1>Villagers Wanted for Adventure Fame and Glory!</h1>
 </header>
+<h2>Population</h2>
 <section id="population">
-Candidate Pool Size:
+Population Size:
 <input id="populationSize" type="text" value="10000" /><br>
-Short List Size:
-<input id="shortList" type="text" value="6" /><br>
-<button id="go" type="submit">Create</button>
+<button id="generateButton" type="submit">Create Population</button>
+<div id="populationResults"></div>
 </section>
 <section>
-<div id="candidates">
+<h2>Selection Criteria</h2>
+need some filter option controls here
+<hr>
+<h2>Sorting</h2>
+Short List:
+<input id="shortListSize" type="text" value="6" /><br>
+need some sorting controls here too.
+<hr>
+<button id="filterButton" type="button">Filter</button>
+<div id="results">
 Press button to begin.
 </div>
 </section>
 <footer>
 </footer>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="/js/filter.js"></script>
 <script src="/js/character.js"></script>
-<script src="/js/main.js"></script>
+<script src="/js/filter.js"></script>
+<script src="/js/sorting.js"></script>
+<script src="/js/views.js"></script>
 <script src="/js/events.js"></script>
 </body>
 </html>
