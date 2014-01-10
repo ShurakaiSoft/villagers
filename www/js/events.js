@@ -46,7 +46,7 @@ var MAIN = (function (main) {
 		}
 		candidates = main.generateAdventurers(populationSize);
 		handleFilterEvent(e);
-		alert("Created " + populationSize + " Adventurers.");
+		main.message.ok("Created " + populationSize + " Adventurers.");
 	}
 
 	/**
