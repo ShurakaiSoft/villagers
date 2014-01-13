@@ -65,5 +65,38 @@ var MAIN = (function (main) {
 		}
 	};
 
+	/**
+	 * Returns an array of field names along with their getter
+	 * function names.
+	 */
+	main.getSortableList = function () {
+		var sortableList = [{
+			func: 'getStr',
+			name: 'Strength Attribute'
+		}, {
+			func: 'getDex',
+			name: 'Dexterity Attribute'
+		}, {
+			func: 'getCon',
+			name: 'Constitution Attribute'
+		}, {
+			func: 'getInt',
+			name: 'Intelligence Attribute'
+		}, {
+			func: 'getWis',
+			name: 'Wisdom Attribute'
+		}, {
+			func: 'getChr',
+			name: 'Charisma Attribute'
+		}, {
+			func: 'getTotal',
+			name: 'Attribute Total'
+		}, {
+			func: 'getAvg',
+			name: 'Attribute Average'
+		}];
+		return sortableList;
+	};
+
 	return main;
 }(MAIN || {}));

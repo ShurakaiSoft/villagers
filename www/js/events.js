@@ -11,11 +11,9 @@ var MAIN = (function (main) {
 	var $filterButton = null;
 	var $generateButton = null;
 	var $populationInput = null;
-	var $shortListInput = null;
 	var filterId = '#filterButton';
 	var generateId = '#generateButton';
 	var populationId = '#populationSize';
-	var shortListId = '#shortListSize';
 
 	var candidates = [];
 
@@ -28,9 +26,9 @@ var MAIN = (function (main) {
 		$filterButton = $(filterId);
 		$generateButton = $(generateId);
 		$populationInput = $(populationId);
-		$shortListInput = $(shortListId);
 		$filterButton.click(handleFilterEvent);
 		$generateButton.click(handleGeneratePopulationEvent);
+		main.sortingPanel.init($('#sortingPanel'), main.getSortableList());
 	});
 
 
@@ -62,18 +60,12 @@ var MAIN = (function (main) {
 				chr: 17
 			}
 		};
-		var mockSortOptions = [{
-			metric: 'getStr',
-			order: 'descending'
-		}, {
-			metric: 'getTotal',
-			order: 'descending'
-		}];
-		var shortListSize = Number($shortListInput.val());
-		if (shortListSize <= 0) {
+		var sortOptions = main.sortingPanel.getSortOptions();
+
+		if (sortOptions && sortOptions.size <= 0) {
 			throw "WARNING: short list size too small: " + shortListSize;
 		}
-		filterCandidates(mockFilter, mockSortOptions, shortListSize);
+		filterCandidates(mockFilter, sortOptions.options, sortOptions.size);
 	}
 
 

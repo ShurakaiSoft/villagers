@@ -1,3 +1,4 @@
+
 /**
  * Location for all tests related to the sorting.js file.
  */
@@ -146,3 +147,16 @@ test("Sort a collection twice. Once in each direction. (chr asc, and total desc)
 	ok(mockAdventurersList[0] === adventurerComplex, "ComplexAdventurer is first.");
 });
 
+test("getSortableList() returns an array.", function () {
+	var sortableList = MAIN.getSortableList();
+	ok(Object.prototype.toString.call(sortableList) === '[object Array]', "Is an Array.");
+});
+
+test("Objects in a sortableList have correct format", function () {
+	var sortableList = MAIN.getSortableList();
+	ok(sortableList.length > 0, "array is not empty.");
+	ok(sortableList[0].hasOwnProperty('name'), "has a name property");
+	ok(sortableList[0].hasOwnProperty('func'), "has a func property");
+
+
+});
